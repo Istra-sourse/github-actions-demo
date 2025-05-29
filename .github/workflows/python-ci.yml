@@ -1,11 +1,32 @@
-name: Python CI
+name: Python Quality Checks
 
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
+  lint:
+    name: 🔍 Lint
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install flake8
+      run: pip install flake8
+
+    - name: Run flake8
+      run: flake8 . --max-line-length=88
+
   test:
+    name: 🧪 Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +39,25 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
         pip install -r requirements.txt
 
     - name: Run tests
       run: PYTHONPATH=. pytest
+
+  format:
+    name: 🎨 Format Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install black
+      run: pip install black
+
+    - name: Check code format with Black
+      run: black . --check
