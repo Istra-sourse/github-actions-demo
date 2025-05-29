@@ -1,4 +1,4 @@
-from my_app.app import add
+from my_app.app import add, add_new_func
 
 
 def test_add():
