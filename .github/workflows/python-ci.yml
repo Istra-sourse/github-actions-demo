@@ -25,9 +25,29 @@ jobs:
     - name: Run flake8
       run: flake8 . --max-line-length=88
 
+  format:
+    name: 🎨 Format Check
+    runs-on: ubuntu-latest
+    needs: lint  # Выполняется после lint
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install black
+      run: pip install black
+
+    - name: Check code format with Black
+      run: black . --check
+
   test:
     name: 🧪 Tests
     runs-on: ubuntu-latest
+    needs: format  # Выполняется после format
 
     steps:
     - uses: actions/checkout@v3
@@ -43,21 +63,3 @@ jobs:
 
     - name: Run tests
       run: PYTHONPATH=. pytest
-
-  format:
-    name: 🎨 Format Check
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
-    - name: Install black
-      run: pip install black
-
-    - name: Check code format with Black
-      run: black . --check
