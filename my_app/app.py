@@ -4,4 +4,4 @@ def add(a, b):
 
 
 def add_new_func(c, d, u):
-    return (c+d)*u
+    return (c + d) * u
