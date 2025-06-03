@@ -1,0 +1,23 @@
+name: Auto PR to Main
+
+on:
+  push:
+    branches:
+      - features
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create or update PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: features
+          title: "🔄 Auto PR: features ➜ main"
+          body: |
+            Этот pull request был автоматически создан при пуше в ветку `features`.
