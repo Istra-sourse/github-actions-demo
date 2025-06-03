@@ -21,3 +21,4 @@ jobs:
           title: "🔄 Auto PR: features ➜ main"
           body: |
             Этот pull request был автоматически создан при пуше в ветку `features`.
+            
