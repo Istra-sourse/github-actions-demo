@@ -34,3 +34,4 @@ def test_add_new_func():
     assert add_new_func(1, 1, 1) == 2
     assert add_new_func(2, 2, 2) == 8
     assert add_new_func(-1, 0, 5) == -5
+    assert add_new_func(0, 0, 0) == 0
