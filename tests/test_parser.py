@@ -31,6 +31,7 @@ def test_add():
     assert add(2, 2) == 4
     assert add(10, 10) == 20
     assert add(20, 20) == 40
+    assert add(15, 15) == 30
 
 
 def test_add_new_func():
