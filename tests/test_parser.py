@@ -28,6 +28,7 @@ def test_add():
     assert add(-1, 1) == 0
     assert add(5, 5) == 10
     assert add(6, 6) == 12
+    assert add(12, 12) == 24
 
 
 def test_add_new_func():
